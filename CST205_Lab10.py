@@ -56,10 +56,13 @@ def testLetter(puzzelWord="", userGuess=""):
     return False
 
 def drawGameScreen(hangmanState=0,puzzelMessage="",statusMsg=""):
+    '''
+    Output the status of game play 
+    '''
     print(MSG_USED_GUESSES%hangmanState)
     print(puzzelMessage)
     print(statusMsg)
-    print("\n")
+    print("\n")  # The new line is not really needed, but provides a visual division between rounds
     return
 
 def getUserInput(message="Please enter a letter to test"):
@@ -79,10 +82,11 @@ def gameLoop(wordIndex):
     puzzelWord = PUZZLE_WORD_LIST[wordIndex]
     inccorectGuessCount = 0
     puzzelMessage = "Begin Game"
+    # Loop until the game is won or lost
     while gameWon == False and gameLost == False:
         drawGameScreen(hangmanState=inccorectGuessCount,puzzelMessage=puzzelMessage,statusMsg=statusMsg)
 
-        #Prompt user for input
+        #Prompt user for input 
         dirtyString = getUserInput(MSG_USER_INPUT_NEEDED)
         userGuess = cleanInput(dirtyString)
         if userGuess in guessedLetters:
@@ -96,7 +100,8 @@ def gameLoop(wordIndex):
             continue
         else:
             guessedLetters.append(userGuess)
-
+        
+        #Evaluate result of guess
         result = testLetter(puzzelWord=puzzelWord,userGuess=userGuess)
         if result == False:
             inccorectGuessCount = inccorectGuessCount + 1
@@ -129,13 +134,12 @@ def hangman():
         if gameLoop(wordCount):
             print(MSG_USER_WON)
         else:
-            print(MSG_USER_LOST%PUZZLE_WORD_LIST[wordIndex])
+            print(MSG_USER_LOST%PUZZLE_WORD_LIST[wordCount])
         if wordCount < len(PUZZLE_WORD_LIST):
             wordCount = wordCount + 1
         else:
            wordCount = 0
         play_again = cleanInput(getUserInput(MSG_ASK_IF_PLAY_AGAIN))
-        print(play_again)
         if play_again.upper()  != 'Y':
             continueGame = False
 
