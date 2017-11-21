@@ -40,23 +40,8 @@ def goToEleven(sound):
             setSampleValueAt(sound, sample, -32768)
     return sound
 
-
 #Call Function                                                                                                 
 s = pickAFile()
 sd = makeSound(s)
-#play(sd)
-#explore(sd)
-increaseVolume(sd)
-writeSoundTo(sd, "C:\\")
-decreaseVolume(sd)
-writeSoundTo(sd, "C:\\")
-changeVolume(sd)
-writeSoundTo(sd, "C:\\")
-maxSample(sd)
-writeSoundTo(sd, "C:\\")
-maxVolume(sd)
-writeSoundTo(sd, "C:\\")
-goToEleven(sd)
-writeSoundTo(sd, "C:\\")
 
              
