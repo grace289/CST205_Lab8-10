@@ -1,23 +1,28 @@
 
 #Lab 8
+
+# Grace Alvarez
+# Gabriel Loring\n
+# Members of Team 5, Hopper
+
 def increaseVolume(sound):
   for sample in getSamples(sound):
     value = getSampleValue(sample)
     setSampleValue(sample, value*2)
   return sound
-    
+
 def decreaseVolume(sound):
   for sample in getSamples(sound):
     value = getSampleValue(sample)
     setSampleValue(sample, value/2)
   return sound
-    
+
 def changeVolume(sound, factor):
   for sample in getSamples(sound):
     value = getSampleValue(sample)
     setSampleValue(sample, value * factor)
   return sound
-    
+
 def maxSample(sound):
   maxValue = 0
   for sample in getSamples(sound):
@@ -40,8 +45,8 @@ def goToEleven(sound):
             setSampleValueAt(sound, sample, -32768)
     return sound
 
-#Call Function                                                                                                 
+#Call Function
 s = pickAFile()
 sd = makeSound(s)
 
-             
+

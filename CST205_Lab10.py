@@ -1,14 +1,4 @@
   #!/usr/bin/python
-MAX_ALLOWED_ATTEMPTS = 6
-PUZZLE_WORD_LIST = [ "parrot", "spam", "nudge", "silly", "cheese", "lumberjack", "argument"]
-MSG_USED_GUESSES = "You have used %i of six guesses"
-MSG_ALPHA_CHARS_ONLY = "Letters only please!"
-MSG_DUPLICATE_CHAR_GUESSED = "You have already guesses %s, please try a different letter."
-MSG_GAME_OVER_PLAYER_LOOSES = "Sorry, you lose.  Better luck next time!"
-MSG_USER_INPUT_NEEDED = "Enter a guess: "
-MSG_ASK_IF_PLAY_AGAIN = "Would you like to play again, enter Y for Yes or N for No: "
-MSG_USER_LOST = "Sorry, you lost the word was %s"
-MSG_USER_WON = "You guessed correctly!"
 MSG_WELCOME = '''
 CST205 Lab 10
 Pair Programming exercise by:
@@ -28,12 +18,24 @@ Try to guess the Montey Python Sketch \nrelated word in %i or fewer tries
 \t3.\tHave fun
 '''
 
+MAX_ALLOWED_ATTEMPTS = 6
+PUZZLE_WORD_LIST = [ "parrot", "spam", "nudge", "silly", "cheese", "lumberjack", "argument"]
+MSG_USED_GUESSES = "You have used %i of six guesses"
+MSG_ALPHA_CHARS_ONLY = "Letters only please!"
+MSG_DUPLICATE_CHAR_GUESSED = "You have already guesses %s, please try a different letter."
+MSG_GAME_OVER_PLAYER_LOOSES = "Sorry, you lose.  Better luck next time!"
+MSG_USER_INPUT_NEEDED = "Enter a guess: "
+MSG_ASK_IF_PLAY_AGAIN = "Would you like to play again, enter Y for Yes or N for No: "
+MSG_USER_LOST = "Sorry, you lost the word was %s"
+MSG_USER_WON = "You guessed correctly!"
+
+
 def cleanInput(dirtyString=""):
     '''
     The user input needs to be a A-Za-z
-    alpha charachter.  Since we may have 
+    alpha charachter.  Since we may have
     spaces and other non alphas, we walk
-    through the input string until we find 
+    through the input string until we find
     our first alph and return it, if no
     alpha is found return a empty string
     '''
@@ -57,7 +59,7 @@ def testLetter(puzzelWord="", userGuess=""):
 
 def drawGameScreen(hangmanState=0,puzzelMessage="",statusMsg=""):
     '''
-    Output the status of game play 
+    Output the status of game play
     '''
     print(MSG_USED_GUESSES%hangmanState)
     print(puzzelMessage)
@@ -67,11 +69,11 @@ def drawGameScreen(hangmanState=0,puzzelMessage="",statusMsg=""):
 
 def getUserInput(message="Please enter a letter to test"):
     userString = requestString(message)
-    return userString 
+    return userString
 
 def welcomeMessage():
     print(MSG_WELCOME%MAX_ALLOWED_ATTEMPTS)
-    
+
 
 def gameLoop(wordIndex):
     gameWon = False
@@ -86,7 +88,7 @@ def gameLoop(wordIndex):
     while gameWon == False and gameLost == False:
         drawGameScreen(hangmanState=inccorectGuessCount,puzzelMessage=puzzelMessage,statusMsg=statusMsg)
 
-        #Prompt user for input 
+        #Prompt user for input
         dirtyString = getUserInput(MSG_USER_INPUT_NEEDED)
         userGuess = cleanInput(dirtyString)
         if userGuess in guessedLetters:
@@ -100,7 +102,7 @@ def gameLoop(wordIndex):
             continue
         else:
             guessedLetters.append(userGuess)
-        
+
         #Evaluate result of guess
         result = testLetter(puzzelWord=puzzelWord,userGuess=userGuess)
         if result == False:
@@ -126,7 +128,7 @@ def gameLoop(wordIndex):
 
     return gameWon
 
-def hangman(): 
+def hangman():
     welcomeMessage()
     wordCount = 0
     continueGame = True
